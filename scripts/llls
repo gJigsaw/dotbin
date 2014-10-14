@@ -1,0 +1,6 @@
+# As BSD less doesn't like how BSD ls outputs color, so use GNU ls instead
+if [ "`on_BSD`" ];
+  then gls --color -Al $@ | less -F
+  else ls --color -Al $@ | less -F
+fi
+

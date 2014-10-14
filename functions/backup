@@ -1,0 +1,15 @@
+function backup {
+    if [ -f $1 ]
+        then
+            suffix=.backup.`timestamp`
+            cp $1 $1$suffix
+            if ! [ $? ]
+                then
+                    echo Backup Failed!
+                    exit 1
+            fi
+        else
+            echo File "($1)" not found!
+    fi
+
+}

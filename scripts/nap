@@ -1,0 +1,5 @@
+if [ "`on_Mac`" ];
+  then osascript -e "tell application \"Finder\" to sleep";
+  else echo Sorry - Sleep not configured for this TERM_PROGRAM \($TERM_PROGRAM\);
+fi
+

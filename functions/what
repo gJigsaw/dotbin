@@ -1,0 +1,4 @@
+# Find and display details on an executable
+function what() {
+    which $1 | xargs ls -la
+}

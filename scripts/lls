@@ -1,0 +1,16 @@
+lls_opts="-lh --color=yes"
+
+hidden=`ls -Al $@ | grep ' \.' | wc -l`
+
+if (($hidden<10));
+  then lls_opts="$lls_opts -A";
+  else echo "NOTE: Use 'llls' to see $hidden hidden files.";
+fi;
+
+# As BSD less doesn't like how BSD ls outputs color, so use GNU ls instead
+if [ "`on_BSD`" ];
+  then gls $lls_opts "$@" | less;
+  else ls $lls_opts "$@" | less;
+fi
+
+export lls_opts="$lls_opts"

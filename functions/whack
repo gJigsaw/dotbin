@@ -1,0 +1,6 @@
+# WHACK - grep for and then kill a process
+function whack () {
+    # FIXME - This uses the wrong column on OSX
+    ps ax | grep -i $1 | grep -v -i 'grep' | cut -d' ' -f2 | xargs kill
+    echo Whacked $1.
+}

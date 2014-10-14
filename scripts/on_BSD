@@ -1,0 +1,1 @@
+uname -a | grep 'BSD' || uname -a | grep 'Darwin'

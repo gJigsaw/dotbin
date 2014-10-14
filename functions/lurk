@@ -1,0 +1,23 @@
+# Define Lurking functions
+alias lurk='lurks'
+alias slurk='lurks'
+alias tlurk='lurkt'
+
+# Loop until it pings, then telnet into it
+function lurkt () {
+    until ( ping -c 1 $* >/dev/null )
+    do
+        sleep .1
+    done
+    ( telnet $* )
+}
+
+
+# Loop until it pings, then ssh into it
+function lurks () {
+    until ( ping -c 1 $* >/dev/null )
+    do
+        sleep .1
+    done
+    ( ssh $* )
+}

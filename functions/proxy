@@ -1,0 +1,28 @@
+# configure proxy support
+function proxy(){
+echo "Configuring proxy support. Use sec-proxy if you need to incude a username:password pair."
+echo -n "Proxy Server IP:"
+read -e proxy
+echo -n "Proxy Server Port:"
+read -e port
+export http_proxy="http://$proxy:$port/"
+export ftp_proxy="http://$proxy:$port/"
+echo "Proxy configured for this session only."
+}
+
+# configure username & PW secured proxy support
+function sec-proxy(){
+echo "if username contains '@' you'll need to use '%40' instead" 
+echo -n "username:"
+read -e username
+echo -n "password:"
+read -es password
+echo -n "Proxy Server IP:"
+read -e proxy
+echo -n "Proxy Server Port:"
+read -e port
+export http_proxy="http://$username:$password@$proxy:$port/"
+export ftp_proxy="http://$username:$password@$proxy:$port/"
+echo "Proxy configured for this session only."
+}
+
