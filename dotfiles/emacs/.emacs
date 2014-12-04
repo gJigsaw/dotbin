@@ -17,8 +17,10 @@
 ; (add-to-list 'interpreter-mode-alist '("python" . python-mode))
 
 ;(load-file "~/.emacs.d/fontlock.el")
-(iswitchb-mode 1)
-(setq iswitchb-default-method 'samewindow)
+
+;; iswitchb
+;(iswitchb-mode 1)
+;(setq iswitchb-default-method 'samewindow)
 
 (require 'tramp)
 ;(setq tramp-default-method "sshx")
@@ -71,4 +73,12 @@
 (defun my-c-mode-hook () 
    (setq indent-tabs-mode nil 
          c-basic-offset 4)) 
-(add-hook 'c-mode-common-hook 'my-c-mode-hook) 
+(add-hook 'c-mode-common-hook 'my-c-mode-hook)
+
+;; helm
+;; [Facultative] Only if you have installed async.
+(add-to-list 'load-path "~/.emacs.d/async")
+(add-to-list 'load-path "~/.emacs.d/helm")
+(require 'helm-config)
+(global-set-key (kbd "M-x") 'helm-M-x)
+(helm-mode 1)

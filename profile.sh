@@ -16,9 +16,10 @@ export DOTBIN="${HOME_DIR}/.bin"
 export SETUP="${DOTBIN}/setup"
 source $SETUP/functions.sh
 source $SETUP/aliases.sh
-source $SETUP/git.sh
+source $SETUP/git-flow-completion.sh
 source $SETUP/virtualenv.sh
 source $SETUP/history.sh
+source $SETUP/completion.sh
 #source $SETUP/powerline.sh
 source $SETUP/prompt.sh
 
@@ -28,6 +29,9 @@ export PATH="${PATH}:$SCRIPTS"
 export LESS="-iQFXKRM --shift=5"
 export EDITOR="/usr/bin/emacs"
 export PAGER="less"
+
+# Show current dotbin git status
+cd $DOTBIN; git status -s; cd -
 
 test_network
 date
