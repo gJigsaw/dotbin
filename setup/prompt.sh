@@ -3,8 +3,7 @@
 # Thanks to:
 #   http://gist.github.com/31967 (Scott Woods <scott@westarete.com>, halbtuerke, & lakiolen)
 #   https://gist.github.com/maumercado/3354613 (Mauricio Mercado)
- 
- 
+
 # Some escape codes available for use
   COLOR_NONE="\[\e[0m\]"
 
@@ -24,7 +23,7 @@ LIGHT_YELLOW="\[\033[1;33m\]"
 VENV_COLOR="${CYAN}"
 LOGIN_COLOR="${PURPLE}"
 DIR_COLOR="${BLUE}"
-GIT_CLEAN_COLOR="${GREEN}"
+GIT_CLEAN_COLOR="${CYAN}"
 GIT_STAGED_COLOR="${YELLOW}"
 GIT_DIRTY_COLOR="${RED}"
 ERR_COLOR="${RED}"
@@ -48,14 +47,14 @@ function set_dir () {
   # Set the directory substring
   DIR="${DIR_COLOR}\w${COLOR_NONE}"
 }
- 
+
 function set_git {
   # Set the branch
   BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'`
 
   # Get the status
   status="$(git status 2> /dev/null)"
- 
+
   # Set color based on clean/staged/dirty
   if [[ ${status} =~ "working directory clean" ]]; then
     COLOR="${GIT_CLEAN_COLOR}"
@@ -64,7 +63,7 @@ function set_git {
   else
     COLOR="${GIT_DIRTY_COLOR}"
   fi
-  
+
   # Set arrow icon based on status against remote
   remote_pattern="Your branch is (.*) of"
   if [[ ${status} =~ ${remote_pattern} ]]; then
@@ -105,7 +104,7 @@ function set_prompt () {
 
   PS1="${VENV}${LOGIN} ${DIR} ${GIT}${SYMBOL} "
 }
- 
+
 # Function to execute immediately prior to displaying the prompt
 PROMPT_COMMAND=set_prompt
 

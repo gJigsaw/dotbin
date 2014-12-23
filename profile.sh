@@ -1,6 +1,6 @@
 # Install instructions:
 #     Acquire latest version:
-#         git clone 
+#         git clone
 #     Add the following line to ~/.bash_profile or ~/.bashrc:
 #         source ~/.bin/profile.sh
 #     Setup symbolic links:
@@ -33,7 +33,7 @@ export PAGER="less"
 # Show current dotbin git status
 cd $DOTBIN; git status -s; cd -
 
-test_network
+#test_network
 date
 
 if [ -f ~/.localbin/local_profile ]; then

@@ -1,84 +1,246 @@
-;(set-foreground-color "white");
-;(set-background-color "black");
+;; require package so that at startup, we can check for and
+;; install packages that aren't already installed.
+(require 'package)
 
-(setq-default indent-tabs-mode nil);
-(setq default-tab-width 4);
-;(setq scroll-step 1);
+;; Include all package archives
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                         ("marmalade" . "http://marmalade-repo.org/packages/")
+                         ("melpa" . "http://melpa.milkbox.net/packages/")
+                         ("elpy" . "http://jorgenschaefer.github.io/packages/")))
 
-;;colors and syntax highlighting
-;(cond ((fboundp 'global-font-lock-mode)
-       ;; Turn on font-lock in all modes that support it
-;       (global-font-lock-mode t)
-       ;; Maximum colors
-;       (setq font-lock-maximum-decoration t)))
+(package-refresh-contents)
+(package-initialize)
 
-; (autoload 'python-mode "python-mode" "Python Mode." t)
-; (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
-; (add-to-list 'interpreter-mode-alist '("python" . python-mode))
 
-;(load-file "~/.emacs.d/fontlock.el")
+;(global-linum-mode t)
+(show-paren-mode t)
+(setq show-paren-style 'expression)
+(set-face-attribute 'default nil :height 150)
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
-;; iswitchb
-;(iswitchb-mode 1)
-;(setq iswitchb-default-method 'samewindow)
+;; Fill Column Indicator
+(unless (package-installed-p 'fill-column-indicator)
+  (package-install 'fill-column-indicator))
+(require 'fill-column-indicator)
+(setq fci-rule-width 2)
+(setq fci-rule-color "darkblue")
+(setq fci-rule-column 100)
 
-(require 'tramp)
-;(setq tramp-default-method "sshx")
-;(setq tramp-default-user "USER_NAME"
-;      tramp-default-host "BOUNCE_BOX")
-;(add-to-list 'tramp-default-proxies-alist
-;             '("ns1" nil "/sshx:USER_NAME@BOUNCE_BOX@DOMAIN_NAME.COM:"))
+(unless (package-installed-p 'column-enforce-mode)
+  (package-install 'column-enforce-mode))
+(require 'column-enforce-mode)
+(column-enforce-mode t)
+(setq column-enforce-column '100)
 
-;(put 'narrow-to-region 'disabled nil)
+;; use spaces instead of tab character when I press the tab key
+(setq-default indent-tabs-mode nil)
 
-;Display Column Number
-(setq column-number-mode t)
+;; enable line and column numbering in the mode-line
+(line-number-mode 1)
+(column-number-mode 1)
 
-;Cisco Router Mode
-(autoload 'cisco-router-mode "~/.emacs.d/cisco-router-mode.el" "Major mode for Cisco Routers." t)
+;; disable emacs menubar, toolbar, scrollbar
+(menu-bar-mode -1)
+;(toggle-scroll-bar -1)
+(tool-bar-mode -1)
 
-(provide 'emacs-init)
 
-;;; use groovy-mode when file ends in .groovy or has #!/bin/groovy at start
-(autoload 'groovy-mode "~/.emacs.d/groovy-mode.el" "Major mode for editing Groovy code." t)
-(add-to-list 'auto-mode-alist '("\.groovy$" . groovy-mode))
-(add-to-list 'interpreter-mode-alist '("groovy" . groovy-mode))
+;; auto-complete
+(unless (package-installed-p 'auto-complete)
+  (package-install 'auto-complete))
+(require 'auto-complete-config)
 
-;;; make Groovy mode electric by default.
-;(add-hook 'groovy-mode-hook
-;          '(lambda ()
-;             (require 'groovy-electric)
-;             (groovy-electric-mode)))
+;; rainbow-delimiters
+(unless (package-installed-p 'rainbow-delimiters)
+  (package-install 'rainbow-delimiters))
 
-;;; Backups
-(setq
-   backup-by-copying t      ; don't clobber symlinks
-   backup-directory-alist
-    '(("." . "~/.saves"))    ; don't litter my fs tree
-   delete-old-versions t
-   kept-new-versions 6
-   kept-old-versions 2
-   version-control t)       ; use versioned backups
+;; Paredit
+(unless (package-installed-p 'paredit)
+  (package-install 'paredit))
 
-;; Save all tempfiles in $TMPDIR/emacs$UID/
-    (defconst emacs-tmp-dir (format "%s/%s%s/" temporary-file-directory "emacs" (user-uid)))
-    (setq backup-directory-alist
-        `((".*" . ,emacs-tmp-dir)))
-    (setq auto-save-file-name-transforms
-        `((".*" ,emacs-tmp-dir t)))
-    (setq auto-save-list-file-prefix
-        emacs-tmp-dir)
-
-;; Bring groovy indentation to 4 spaces
-(defun my-c-mode-hook () 
-   (setq indent-tabs-mode nil 
-         c-basic-offset 4)) 
-(add-hook 'c-mode-common-hook 'my-c-mode-hook)
-
-;; helm
-;; [Facultative] Only if you have installed async.
-(add-to-list 'load-path "~/.emacs.d/async")
-(add-to-list 'load-path "~/.emacs.d/helm")
+;;helm mode
+(unless (package-installed-p 'helm)
+  (package-install 'helm))
 (require 'helm-config)
-(global-set-key (kbd "M-x") 'helm-M-x)
 (helm-mode 1)
+(setq helm-ff-auto-update-initial-value 1)
+(define-key global-map [remap find-filne] 'helm-find-files)
+(define-key global-map [remap occur] 'helm-occur)
+(define-key global-map [remap list-buffers] 'helm-buffers-list)
+(define-key global-map [remap dabbrev-expand] 'helm-dabbrev)
+(define-key lisp-interaction-mode-map [remap completion-at-point] 'helm-lisp-completion-at-point)
+(define-key emacs-lisp-mode-map       [remap completion-at-point] 'helm-lisp-completion-at-point)
+
+
+;; Clojure
+(unless (package-installed-p 'clojure-mode)
+  (package-install 'clojure-mode))
+(add-hook 'clojure-mode-hook 'paredit-mode)
+(add-hook 'clojure-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'clojure-mode-hook 'auto-complete-mode)
+(add-hook 'clojure-mode-hook 'electric-indent-mode +1)
+(setq clojure-defun-style-default-indent t)
+
+
+;; cider
+(unless (package-installed-p 'cider)
+  (package-install 'cider))
+(setq nrepl-hide-special-buffers t)
+(setq cider-auto-select-error-buffer nil)
+(setq cider-lein-command "/usr/local/bin/lein")
+(setq cider-repl-result-prefix ";; => ")
+(add-hook 'cider-repl-mode-hook 'paredit-mode)
+(add-hook 'cider-repl-mode-hook 'cider-turn-on-eldoc-mode)
+(add-hook 'cider-repl-mode-hook 'electric-indent-mode +1)
+(add-hook 'cider-repl-mode-hook 'rainbow-delimiters-mode)
+
+;; projectile
+(unless (package-installed-p 'projectile)
+  (package-install 'projectile))
+(projectile-global-mode t)
+(global-set-key (kbd "C-c h") 'helm-projectile)
+
+;;(setq projectile-completion-system 'grizzl)
+
+;; helm-projectile
+(unless (package-installed-p 'helm-projectile)
+  (package-install 'helm-projectile))
+
+;; magit
+(unless (package-installed-p 'magit)
+  (package-install 'magit))
+(global-set-key (kbd "C-x g") 'magit-status)
+
+;;Wind move
+;; (when (fboundp 'windmove-default-keybindings)
+;;   (windmove-default-keybindings 'meta))
+
+;;   (add-hook 'emacs-lisp-mode-hook
+;;     (lambda ()
+;;       (paredit-mode t)
+
+;;       (turn-on-eldoc-mode)
+;;       (eldoc-add-command
+;;        'paredit-backward-delete
+;;        'paredit-close-round)
+
+;;       (local-set-key (kbd "RET") 'electrify-return-if-match)
+;;       (eldoc-add-command 'electrify-return-if-match)
+
+;;       (show-paren-mode t)))
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" default)))
+ '(exec-path
+   (quote
+    ("/usr/bin" "/bin" "/usr/sbin" "/sbin" "/Applications/Emacs.app/Contents/MacOS/libexec" "/Applications/Emacs.app/Contents/MacOS/bin" "/usr/local/bin")))
+ '(markdown-command "/usr/local/bin/markdown")
+ '(python-check-command
+   "/Users/jasongreen/Coding/VirtualEnvironments/aver2/bin/pyflakes"))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
+;;YAML mode
+(unless (package-installed-p 'yaml-mode)
+  (package-install 'yaml-mode))
+;(yaml-mode)
+
+;;Powerline
+(unless (package-installed-p 'powerline)
+  (package-install 'powerline))
+(require 'powerline)
+(setq powerline-color1 "#222")
+(setq powerline-color2 "#444")
+(setq powerline-arrow-shape 'curve)
+(powerline-default-theme)
+
+;;Python
+(unless (package-installed-p 'elpy)
+  (package-install 'elpy))
+(elpy-enable)
+;(elpy-use-ipython)
+;(add-hook 'python-mode-hook 'fci-mode)
+;(add-hook 'python-mode-hook 'before-save-hook 'require-final-newline t)
+
+;;(elpy-clean-modeline)
+(setq elpy-rpc-backend "jedi")
+;(put 'downcase-region 'disabled nil)
+;(put 'upcase-region 'disabled nil)
+;; (when (executable-find "ipython")
+;;   (setq
+;;    python-shell-interpreter "ipython"
+;;    python-shell-interpreter-args ""
+;;    python-shell-prompt-regexp "In \\[[0-9]+\\]: "
+;;    python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
+;;    python-shell-completion-setup-code
+;;    "from IPython.core.completerlib import module_completion"
+;;    python-shell-completion-module-string-code
+;;    "';'.join(module_completion('''%s'''))\n"
+;;    python-shell-completion-string-code
+;;    "';'.join(get_ipython().Completer.all_completions('''%s'''))\n"))
+
+;; More Jedi
+;(add-hook 'python-mode-hook 'jedi:setup)
+;(setq jedi:complete-on-dot t)                 ; optional
+
+
+(autoload 'markdown-mode "markdown-mode"
+  "Major mode for editing Markdown files" t)
+(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+(server-start t)
+
+;; expand region
+(unless (package-installed-p 'expand-region)
+  (package-install 'expand-region))
+(global-set-key (kbd "C-=") 'er/expand-region)
+
+;; Solarized Color Theme
+(unless (package-installed-p 'color-theme-solarized)
+  (package-install 'color-theme-solarized))
+(load-theme 'solarized-dark)
+
+
+
+;;
+;; Custom keybindings
+;;
+;; Font size
+(global-set-key (kbd "C-+") 'text-scale-increase)
+(global-set-key (kbd "C--") 'text-scale-decrease)
+;; Start eshell or switch to it if it's active.
+(global-set-key (kbd "C-x m") 'eshell)
+;; M-x without meta
+(global-set-key (kbd "C-x C-m") 'execute-extended-command)
+;; kill lines backward
+(global-set-key (kbd "C-<backspace>") (lambda ()
+                                        (interactive)
+                                        (kill-line 0)
+                                        (indent-according-to-mode)))
+;; Scrolling within a buffer
+(defun scroll-down-one-line ()
+  "Scroll down one line."
+  (interactive)
+  (scroll-down 1))
+(defun scroll-up-one-line ()
+  "Scroll up one line."
+  (interactive)
+  (scroll-up 1))
+(global-set-key "\C-c\C-p" 'scroll-down-one-line)
+(global-set-key "\C-c\C-n" 'scroll-up-one-line)
+;; Scrolling between buffers
+(global-set-key "\M-n"  'next-buffer)
+(global-set-key "\M-p"  'previous-buffer)
+(global-set-key "\C-x\C-n" 'next-buffer)
+(global-set-key "\C-x\C-p" 'previous-buffer)
