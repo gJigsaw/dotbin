@@ -6,3 +6,4 @@ source $FUNCTIONS/lurk
 source $FUNCTIONS/timestamp
 source $FUNCTIONS/backup
 source $FUNCTIONS/igrep
+source $FUNCTIONS/ext_ip

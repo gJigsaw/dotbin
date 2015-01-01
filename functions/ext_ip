@@ -1,0 +1,5 @@
+#Define and return the external IP address
+function ext_ip () {
+    My_External_IP=`wget -O - http://ifconfig.me/ip` > /dev/null
+    echo $My_External_IP
+}
