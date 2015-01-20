@@ -18,6 +18,7 @@ source $SETUP/functions.sh
 source $SETUP/aliases.sh
 source $SETUP/git-flow-completion.sh
 source $SETUP/virtualenv.sh
+source $SETUP/docker.sh
 source $SETUP/history.sh
 source $SETUP/completion.sh
 #source $SETUP/powerline.sh

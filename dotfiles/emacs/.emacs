@@ -11,6 +11,9 @@
 (package-refresh-contents)
 (package-initialize)
 
+(add-to-list 'load-path "Users/jasongreen/.emacs.d/Modes/Dockerfile")
+(require 'dockerfile-mode)
+(add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
 
 ;(global-linum-mode t)
 (show-paren-mode t)

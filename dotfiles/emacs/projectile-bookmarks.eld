@@ -1,0 +1,1 @@
+("~/.bin/" "~/docker/" "~/aver/" "~/docker/aver/" "~/aver_docker/" "~/aver-support/" "~/D3/boxplot/from_igor/" "/usr/local/" "~/D3/ipython-d3networkx/" "~/D3/ipyD3/" "~/Coding/geo-ip-api/" "~/Coding/d3js-presentation/")
