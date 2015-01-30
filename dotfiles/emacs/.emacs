@@ -11,9 +11,9 @@
 (package-refresh-contents)
 (package-initialize)
 
-(add-to-list 'load-path "Users/jasongreen/.emacs.d/Modes/Dockerfile")
-(require 'dockerfile-mode)
-(add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
+(add-to-list 'load-path "Users/jasongreen/.emacs.d/Modes/Dockerfile/")
+;(require 'dockerfile-mode)
+;(add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode.el))
 
 ;(global-linum-mode t)
 (show-paren-mode t)
@@ -145,7 +145,8 @@
     ("/usr/bin" "/bin" "/usr/sbin" "/sbin" "/Applications/Emacs.app/Contents/MacOS/libexec" "/Applications/Emacs.app/Contents/MacOS/bin" "/usr/local/bin")))
  '(markdown-command "/usr/local/bin/markdown")
  '(python-check-command
-   "/Users/jasongreen/Coding/VirtualEnvironments/aver2/bin/pyflakes"))
+   "/Users/jasongreen/Coding/VirtualEnvironments/aver2/bin/pyflakes")
+ '(safe-local-variable-values (quote ((docker-image-name . "base")))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
