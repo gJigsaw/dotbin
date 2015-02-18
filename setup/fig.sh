@@ -1,0 +1,13 @@
+# Setup Aliases
+alias f.build='fig build'
+alias f.help='fig help'
+alias f.kill='fig kill'
+alias f.logs='fig logs'
+alias f.port='fig port'
+alias f.ps='fig ps'
+alias f.rm='fig rm'
+alias f.run='fig run'
+alias f.scale='fig scale'
+alias f.start='fig start'
+alias f.stop='fig stop'
+alias f.up='fig up'

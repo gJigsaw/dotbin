@@ -20,6 +20,7 @@ source $SETUP/git-flow-completion.sh
 source $SETUP/git.sh
 source $SETUP/virtualenv.sh
 source $SETUP/docker.sh
+source $SETUP/fig.sh
 source $SETUP/history.sh
 source $SETUP/completion.sh
 #source $SETUP/powerline.sh
