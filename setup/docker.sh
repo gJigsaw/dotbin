@@ -17,4 +17,4 @@ alias d.tmp='docker run --rm --name tmp'
 alias d.version='docker version'
 
 # Setup Boot2Docker Environment Variables
-$(boot2docker shellinit)
+$(boot2docker shellinit 2> /dev/null)
