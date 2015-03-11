@@ -1,4 +1,4 @@
-# Setup Aliases
+# Setup docker Aliases
 alias d.attach='docker attach'
 alias d.build='docker build'
 alias d.clean='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q) && docker images -q --filter "dangling=true"  | xargs docker rmi'
@@ -13,8 +13,24 @@ alias d.ps='docker ps -as'
 alias d.rmi='docker rmi'
 alias d.rm='docker rm'
 alias d.run='docker run'
+alias d.stop='docker stop'
 alias d.tmp='docker run --rm --name tmp'
 alias d.version='docker version'
+
+# Setup docker-compose Aliases
+alias dc.build='docker-compose build'
+alias dc.help='docker-compose help'
+alias dc.kill='docker-compose kill'
+alias dc.logs='docker-compose logs'
+alias dc.port='docker-compose port'
+alias dc.ps='docker-compose ps -as'
+alias dc.pull='docker-compose pull'
+alias dc.rm='docker-compose rm'
+alias dc.run='docker-compose run'
+alias dc.scale='docker-compose scale'
+alias dc.stop='docker-compose stop'
+alias dc.up='docker-compose up'
+alias dc.version='docker-compose version'
 
 # Setup Boot2Docker Environment Variables
 $(boot2docker shellinit 2> /dev/null)
