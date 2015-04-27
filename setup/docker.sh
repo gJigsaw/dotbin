@@ -1,7 +1,8 @@
 # Setup docker Aliases
 alias d.attach='docker attach'
 alias d.build='docker build'
-alias d.nuke='docker stop $(docker ps -a -q) && docker rm --volumes=true $(docker ps -a -q) && docker images -q --filter "dangling=true"  | xargs docker rmi'
+alias d.nuke='docker stop $(docker ps -a -q) && docker rm --volumes=true $(docker ps -a -q)'
+alias d.clean='docker images -q --filter "dangling=true"  | xargs docker rmi'
 alias d.exec='docker exec'
 alias d.help='docker help'
 alias d.images='docker images'
