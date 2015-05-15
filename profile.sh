@@ -16,14 +16,15 @@ export DOTBIN="${HOME_DIR}/.bin"
 export SETUP="${DOTBIN}/setup"
 source $SETUP/functions.sh
 source $SETUP/aliases.sh
-source $SETUP/git-flow-completion.sh
-source $SETUP/git.sh
-source $SETUP/virtualenv.sh
-source $SETUP/docker.sh
-source $SETUP/history.sh
+
 source $SETUP/completion.sh
+source $SETUP/docker.sh
+source $SETUP/git.sh
+source $SETUP/git-flow-completion.sh
+source $SETUP/history.sh
 #source $SETUP/powerline.sh
 source $SETUP/prompt.sh
+source $SETUP/virtualenv.sh
 
 export SCRIPTS="${DOTBIN}/scripts"
 export PATH="${PATH}:$SCRIPTS"
