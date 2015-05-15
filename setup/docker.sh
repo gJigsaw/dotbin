@@ -36,8 +36,20 @@ alias dm.start='docker-machine start'
 alias dm.stop='docker-machine stop'
 alias dm.upgrade='docker-machine upgrade'
 alias dm.url='docker-machine url'
+alias dm.use='docker_machine_use'
+alias dm.used='docker_machine_used'
 
-# Setup docker-machine aliases
+# Set machine against which this environemnt will execute docker commands
+function docker_machine_use () {
+    eval "$(docker-machine env $*)"
+}
+
+# Return name of machine against which this environemnt will execute docker commands
+function docker_machine_used () {
+    docker info 2> /dev/null | grep 'Name:' | awk '{print $2}'
+}
+
+# Setup docker-swarm aliases
 alias ds.help='docker-swarm help'
 alias ds.create='docker-swarm create'
 alias ds.list='docker-swarm list'
@@ -47,6 +59,3 @@ alias ds.manage='docker-swarm manage'
 
 # Setup Boot2Docker Environment Variables
 #$(boot2docker shellinit 2> /dev/null)
-
-# Setup Docker-Machine Environment Variables
-eval "$(docker-machine env dev)"

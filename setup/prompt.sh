@@ -21,6 +21,7 @@ LIGHT_YELLOW="\[\033[1;33m\]"
 
 # Selected Colors (alter to taste)
 VENV_COLOR="${CYAN}"
+DM_COLOR="${CYAN}"
 LOGIN_COLOR="${PURPLE}"
 DIR_COLOR="${BLUE}"
 GIT_CLEAN_COLOR="${CYAN}"
@@ -35,6 +36,16 @@ function set_venv () {
     else
         VENV_BASENAME=`basename "$VIRTUAL_ENV"`
         VENV="${VENV_COLOR}[${VENV_BASENAME}]${COLOR_NONE} "
+    fi
+}
+
+function set_dm () {
+  # Set the docker-machine environment substring
+    DM_NAME=`docker_machine_used`
+    if test -z "$DM_NAME" ; then
+        DM=""
+    else
+        DM="${DM_COLOR}[${DM_NAME}]${COLOR_NONE} "
     fi
 }
 
@@ -98,11 +109,12 @@ function set_prompt () {
 
   set_symbol $? # run first to maintain return code of latest command
   set_venv
+  set_dm
   set_login
   set_dir
   set_git
 
-  PS1="${VENV}${LOGIN} ${DIR} ${GIT}${SYMBOL} "
+  PS1="${VENV}${DM}${LOGIN} ${DIR} ${GIT}${SYMBOL} "
 }
 
 # Function to execute immediately prior to displaying the prompt
