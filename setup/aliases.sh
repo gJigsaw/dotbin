@@ -5,6 +5,7 @@ alias apropos='LESS=${LESS:--}S /usr/bin/apropos'
 alias rdme='less *[Rr][Ee][Aa][Dd]*[Mm][Ee]*'
 alias pf="clear;find . | grep -v '.git' | grep -v '.pyc$' | grep -v '__pycache__' | grep -v '~$' | grep -v '/#' | grep -v '/.#' | less"
 alias ddiff='clear;diff -C3 -rNX .gitignore'
+alias biggest="du -s ./* | sort -nr | awk '{print \$2}' | xargs du -sh"
 
 # Listings
 alias cls='clear;lls'
