@@ -21,7 +21,8 @@ LIGHT_YELLOW="\[\033[1;33m\]"
 
 # Selected Colors (alter to taste)
 VENV_COLOR="${CYAN}"
-DM_COLOR="${CYAN}"
+DM_CLEAN_COLOR="${CYAN}"
+DM_DIRTY_COLOR="${RED}"
 LOGIN_COLOR="${PURPLE}"
 DIR_COLOR="${BLUE}"
 GIT_CLEAN_COLOR="${CYAN}"
@@ -45,6 +46,11 @@ function set_dm () {
     if test -z "$DM_NAME" ; then
         DM=""
     else
+        if [ `docker-machine active` = `docker_machine_used`  ]; then
+            DM_COLOR=$DM_CLEAN_COLOR
+        else
+            DM_COLOR=$DM_DIRTY_COLOR
+        fi
         DM="${DM_COLOR}[${DM_NAME}]${COLOR_NONE} "
     fi
 }
