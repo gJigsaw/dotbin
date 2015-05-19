@@ -16,7 +16,7 @@ alias d.rm='docker rm'
 alias d.run='docker run'
 alias d.stop='docker stop'
 alias d.tmp='docker run --rm --name tmp'
-alias d.version='docker version'
+alias d.version='docker --version && docker version'
 
 # Setup docker-compose Aliases
 alias dc.build='docker-compose build'
@@ -31,7 +31,7 @@ alias dc.run='docker-compose run'
 alias dc.scale='docker-compose scale'
 alias dc.stop='docker-compose stop'
 alias dc.up='docker-compose up'
-alias dc.version='docker-compose version'
+alias dc.version='docker-compose --version '
 
 # Setup docker-machine aliases
 alias dm.active='docker-machine active'
@@ -54,7 +54,7 @@ alias dm.upgrade='docker-machine upgrade'
 alias dm.url='docker-machine url'
 alias dm.use='docker_machine_use'
 alias dm.used='docker_machine_used'
-
+alias dm.version='docker-machine --version'
 
 # Set machine against which this environemnt will execute docker commands.
 function docker_machine_use () {
