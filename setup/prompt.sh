@@ -50,10 +50,12 @@ function set_dm () {
         if [ "$DockerTarget" = ""  ]; then
             DockerTarget="local"
         fi
+        DockerComposeTarget=`docker_compose_used`
+        D="${DockerComposeTarget}@${DockerTarget}"
         if [ "$DockerMachineTarget" = "$DockerTarget"  ]; then
-            DM="${DM_IN_SYNC_COLOR}[${DockerTarget}]${COLOR_NONE} "
+            DM="${DM_IN_SYNC_COLOR}[${D}]${COLOR_NONE} "
         else
-            DM="${DM_OUT_OF_SYNC_COLOR}[dm:${DockerMachineTarget} d:${DockerTarget}]${COLOR_NONE} "
+            DM="${DM_OUT_OF_SYNC_COLOR}[d:${D} dm:${DockerMachineTarget}]${COLOR_NONE} "
         fi
     fi
 }

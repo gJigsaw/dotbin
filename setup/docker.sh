@@ -35,19 +35,36 @@ function docker_unuse () {
 }
 
 # Setup docker-compose Aliases
-alias dc.build='docker-compose build'
-alias dc.help='docker-compose help'
-alias dc.kill='docker-compose kill'
-alias dc.logs='docker-compose logs'
-alias dc.port='docker-compose port'
-alias dc.ps='docker-compose ps'
-alias dc.pull='docker-compose pull'
-alias dc.rm='docker-compose rm'
-alias dc.run='docker-compose run'
-alias dc.scale='docker-compose scale'
-alias dc.stop='docker-compose stop'
-alias dc.up='docker-compose up'
-alias dc.version='docker-compose --version '
+alias dc.build="docker-compose -f \$DOCKER_COMPOSE_TARGET build"
+alias dc.help="docker-compose help"
+alias dc.kill="docker-compose -f \$DOCKER_COMPOSE_TARGET kill"
+alias dc.logs="docker-compose -f \$DOCKER_COMPOSE_TARGET logs"
+alias dc.port="docker-compose -f \$DOCKER_COMPOSE_TARGET port"
+alias dc.ps="docker-compose -f \$DOCKER_COMPOSE_TARGET ps"
+alias dc.pull="docker-compose -f \$DOCKER_COMPOSE_TARGET pull"
+alias dc.rm="docker-compose -f \$DOCKER_COMPOSE_TARGET rm"
+alias dc.run="docker-compose -f \$DOCKER_COMPOSE_TARGET run"
+alias dc.scale="docker-compose -f \$DOCKER_COMPOSE_TARGET scale"
+alias dc.stop="docker-compose -f \$DOCKER_COMPOSE_TARGET stop"
+alias dc.up="docker-compose -f \$DOCKER_COMPOSE_TARGET up"
+alias dc.use="docker_compose_use"
+alias dc.used="docker_compose_used"
+alias dc.unuse="docker_compose_unuse"
+alias dc.version="docker-compose --version "
+
+# Set machine against which this environemnt will execute docker commands.
+function docker_compose_use () {
+    DOCKER_COMPOSE_TARGET="$*"
+}
+# Return name of machine against which this environemnt will execute docker commands.
+function docker_compose_used () {
+    echo $DOCKER_COMPOSE_TARGET
+}
+# Clear the docker environment variables.
+function docker_compose_unuse () {
+    unset DOCKER_COMPOSE_TARGET
+}
+
 
 # Setup docker-machine aliases
 alias dm.active='docker-machine active'
