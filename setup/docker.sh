@@ -16,7 +16,23 @@ alias d.rm='docker rm'
 alias d.run='docker run'
 alias d.stop='docker stop'
 alias d.tmp='docker run --rm --name tmp'
+alias d.use='docker_use'
+alias d.used='docker_used'
+alias d.unuse='docker_unuse'
 alias d.version='docker --version && docker version'
+
+# Set machine against which this environemnt will execute docker commands.
+function docker_use () {
+    eval "$(docker-machine env $*)"
+}
+# Return name of machine against which this environemnt will execute docker commands.
+function docker_used () {
+    docker info 2> /dev/null | grep 'Name:' | awk '{print $2}'
+}
+# Clear the docker environment variables.
+function docker_unuse () {
+    eval "$(docker-machine env -u)"
+}
 
 # Setup docker-compose Aliases
 alias dc.build='docker-compose build'
@@ -35,7 +51,6 @@ alias dc.version='docker-compose --version '
 
 # Setup docker-machine aliases
 alias dm.active='docker-machine active'
-alias dm.clear='docker_machine_clear'
 alias dm.create='docker-machine create'
 alias dm.config='docker-machine config'
 alias dm.help='docker-machine help'
@@ -52,24 +67,9 @@ alias dm.start='docker-machine start'
 alias dm.stop='docker-machine stop'
 alias dm.upgrade='docker-machine upgrade'
 alias dm.url='docker-machine url'
-alias dm.use='docker_machine_use'
-alias dm.used='docker_machine_used'
+alias dm.use='docker-machine active'
+alias dm.used='docker-machine active'
 alias dm.version='docker-machine --version'
-
-# Set machine against which this environemnt will execute docker commands.
-function docker_machine_use () {
-    dm.active $* && eval "$(docker-machine env)"
-}
-
-# Clear the docker environment variables.
-function docker_machine_clear () {
-    eval "$(docker-machine env -u)"
-}
-
-# Return name of machine against which this environemnt will execute docker commands.
-function docker_machine_used () {
-    docker info 2> /dev/null | grep 'Name:' | awk '{print $2}'
-}
 
 # Setup docker-swarm aliases
 alias ds.help='docker-swarm help'
@@ -78,6 +78,16 @@ alias ds.list='docker-swarm list'
 alias ds.ls='docker-swarm list'
 alias ds.join='docker-swarm join'
 alias ds.manage='docker-swarm manage'
+
+
+# Hybrid (docker & docker-machine) aliases
+alias dmd.use='docker_machine_and_docker_use'
+
+# Set machine against which this environemnt will execute docker commands.
+function docker_machine_and_docker_use () {
+    dm.use $* && d.use $*
+}
+
 
 # Setup Boot2Docker Environment Variables
 #$(boot2docker shellinit 2> /dev/null)

@@ -145,7 +145,7 @@
     ("/usr/bin" "/bin" "/usr/sbin" "/sbin" "/Applications/Emacs.app/Contents/MacOS/libexec" "/Applications/Emacs.app/Contents/MacOS/bin" "/usr/local/bin")))
  '(markdown-command "/usr/local/bin/markdown")
  '(python-check-command
-   "/Users/jasongreen/Coding/VirtualEnvironments/aver2/bin/pyflakes")
+   "/Users/jasongreen/Coding/VirtualEnvironments/sandbox3/bin/pyflakes")
  '(safe-local-variable-values (quote ((docker-image-name . "base")))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

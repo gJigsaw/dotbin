@@ -21,8 +21,8 @@ LIGHT_YELLOW="\[\033[1;33m\]"
 
 # Selected Colors (alter to taste)
 VENV_COLOR="${CYAN}"
-DM_CLEAN_COLOR="${CYAN}"
-DM_DIRTY_COLOR="${RED}"
+DM_IN_SYNC_COLOR="${CYAN}"
+DM_OUT_OF_SYNC_COLOR="${RED}"
 LOGIN_COLOR="${PURPLE}"
 DIR_COLOR="${BLUE}"
 GIT_CLEAN_COLOR="${CYAN}"
@@ -42,16 +42,19 @@ function set_venv () {
 
 function set_dm () {
   # Set the docker-machine environment substring
-    DM_NAME=`docker_machine_used`
-    if test -z "$DM_NAME" ; then
+    DockerMachineTarget=`docker-machine active`
+    if test -z "$DockerMachineTarget" ; then
         DM=""
     else
-        if [ `docker-machine active` = `docker_machine_used`  ]; then
-            DM_COLOR=$DM_CLEAN_COLOR
-        else
-            DM_COLOR=$DM_DIRTY_COLOR
+        DockerTarget=`docker_used`
+        if [ "$DockerTarget" = ""  ]; then
+            DockerTarget="local"
         fi
-        DM="${DM_COLOR}[${DM_NAME}]${COLOR_NONE} "
+        if [ "$DockerMachineTarget" = "$DockerTarget"  ]; then
+            DM="${DM_IN_SYNC_COLOR}[${DockerTarget}]${COLOR_NONE} "
+        else
+            DM="${DM_OUT_OF_SYNC_COLOR}[dm:${DockerMachineTarget} d:${DockerTarget}]${COLOR_NONE} "
+        fi
     fi
 }
 
