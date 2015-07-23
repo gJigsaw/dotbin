@@ -1,3 +1,6 @@
+# Bail if not running interactively.
+[ -z "$PS1" ] && return
+
 export HOME_DIR=$HOME; # Cruft from when multiple users shared an install
 
 export DOTBIN="${HOME_DIR}/.bin"

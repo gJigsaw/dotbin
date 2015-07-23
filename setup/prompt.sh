@@ -21,8 +21,7 @@ LIGHT_YELLOW="\[\033[1;33m\]"
 
 # Selected Colors (alter to taste)
 VENV_COLOR="${CYAN}"
-DM_IN_SYNC_COLOR="${CYAN}"
-DM_OUT_OF_SYNC_COLOR="${RED}"
+DOCKER_COLOR="${CYAN}"
 LOGIN_COLOR="${PURPLE}"
 DIR_COLOR="${BLUE}"
 GIT_CLEAN_COLOR="${CYAN}"
@@ -42,28 +41,21 @@ function set_venv () {
 
 function set_dm () {
   # Set the docker-machine environment substring
-    DockerMachineTarget=`docker-machine active`
-    if test -z "$DockerMachineTarget" ; then
-        DM=""
+    DockerTarget=`docker_used`
+    if [ "$DockerTarget" = ""  ]; then
+        DOCKER=""
     else
-        DockerTarget=`docker_used`
-        if [ "$DockerTarget" = ""  ]; then
-            DockerTarget="local"
-        fi
         DockerComposeTarget=`docker_compose_used`
-        D="${DockerComposeTarget}@${DockerTarget}"
-        if [ "$DockerMachineTarget" = "$DockerTarget"  ]; then
-            DM="${DM_IN_SYNC_COLOR}[${D}]${COLOR_NONE} "
-        else
-            DM="${DM_OUT_OF_SYNC_COLOR}[d:${D} dm:${DockerMachineTarget}]${COLOR_NONE} "
-        fi
+        COMPOSE="${DockerComposeTarget}@${DockerTarget}"
+        DOCKER="${DOCKER_COLOR}[${COMPOSE}]${COLOR_NONE} "
     fi
 }
 
-function set_login () {
-  # Set the username@hostname substring
-  LOGIN="${LOGIN_COLOR}\u@\h${COLOR_NONE}"
-}
+ function set_login () {
+   # Set the username@hostname substring
+  LOGIN="\u@\h"
+  LOGIN="${LOGIN_COLOR}${LOGIN}${COLOR_NONE}"
+ }
 
 function set_dir () {
   # Set the directory substring
@@ -125,7 +117,7 @@ function set_prompt () {
   set_dir
   set_git
 
-  PS1="${VENV}${DM}${LOGIN} ${DIR} ${GIT}${SYMBOL} "
+  PS1="${VENV}${DOCKER}${LOGIN} ${DIR} ${GIT}${SYMBOL} "
 }
 
 # Function to execute immediately prior to displaying the prompt

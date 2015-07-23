@@ -65,11 +65,11 @@ function docker_compose_unuse () {
     unset DOCKER_COMPOSE_TARGET
 }
 
-
 # Setup docker-machine aliases
 alias dm.active='docker-machine active'
 alias dm.create='docker-machine create'
 alias dm.config='docker-machine config'
+alias dm.env='docker-machine env'
 alias dm.help='docker-machine help'
 alias dm.inspect='docker-machine inspect'
 alias dm.ip='docker-machine ip'
@@ -78,14 +78,12 @@ alias dm.ls='docker-machine ls'
 alias dm.regenerate-certs='docker-machine regenerate-certs'
 alias dm.restart='docker-machine restart'
 alias dm.rm='docker-machine rm'
-alias dm.env='docker-machine env'
 alias dm.ssh='docker-machine ssh'
+alias dm.scp='docker-machine scp'
 alias dm.start='docker-machine start'
 alias dm.stop='docker-machine stop'
 alias dm.upgrade='docker-machine upgrade'
 alias dm.url='docker-machine url'
-alias dm.use='docker-machine active'
-alias dm.used='docker-machine active'
 alias dm.version='docker-machine --version'
 
 # Setup docker-swarm aliases
@@ -95,16 +93,3 @@ alias ds.list='docker-swarm list'
 alias ds.ls='docker-swarm list'
 alias ds.join='docker-swarm join'
 alias ds.manage='docker-swarm manage'
-
-
-# Hybrid (docker & docker-machine) aliases
-alias dmd.use='docker_machine_and_docker_use'
-
-# Set machine against which this environemnt will execute docker commands.
-function docker_machine_and_docker_use () {
-    dm.use $* && d.use $*
-}
-
-
-# Setup Boot2Docker Environment Variables
-#$(boot2docker shellinit 2> /dev/null)
