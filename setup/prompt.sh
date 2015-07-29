@@ -39,16 +39,17 @@ function set_venv () {
     fi
 }
 
-function set_dm () {
-  # Set the docker-machine environment substring
+function set_rind () {
+  # Set the [R]ouster [IN] [D]ocker substring.
     DockerTarget=`docker_used`
-    if [ "$DockerTarget" = ""  ]; then
-        DOCKER=""
+    RousterEnvironment=`echo $ROUSTER_ENVIRONMENT`
+    RIND="${RousterEnvironment}@${DockerTarget}"
+    if [ "$RIND" = "@"  ]; then
+        RIND=""
     else
-        DockerComposeTarget=`docker_compose_used`
-        COMPOSE="${DockerComposeTarget}@${DockerTarget}"
-        DOCKER="${DOCKER_COLOR}[${COMPOSE}]${COLOR_NONE} "
+        RIND="${DOCKER_COLOR}[${RIND}]${COLOR_NONE} "
     fi
+
 }
 
  function set_login () {
@@ -112,12 +113,12 @@ function set_prompt () {
 
   set_symbol $? # run first to maintain return code of latest command
   set_venv
-  set_dm
+  set_rind
   set_login
   set_dir
   set_git
 
-  PS1="${VENV}${DOCKER}${LOGIN} ${DIR} ${GIT}${SYMBOL} "
+  PS1="${VENV}${RIND}${LOGIN} ${DIR} ${GIT}${SYMBOL} "
 }
 
 # Function to execute immediately prior to displaying the prompt

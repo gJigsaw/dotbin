@@ -66,7 +66,6 @@ function docker_compose_unuse () {
 }
 
 # Setup docker-machine aliases
-alias dm.active='docker-machine active'
 alias dm.create='docker-machine create'
 alias dm.config='docker-machine config'
 alias dm.env='docker-machine env'
