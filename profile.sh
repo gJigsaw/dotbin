@@ -11,6 +11,7 @@ source $SETUP/aliases.sh
 
 source $SETUP/completion.sh
 source $SETUP/docker.sh
+source $SETUP/rouster.sh
 source $SETUP/git.sh
 source $SETUP/git-flow-completion.sh
 source $SETUP/history.sh

@@ -26,3 +26,6 @@ alias armageddon='ps -auxww | grep ^USERNAME | sed -e "s/  */ /g" | cut -d " " -
 alias del.pyc='find . -type f -name "*.pyc" -delete'
 alias del.tilde='find . -type f -name "*~" -delete'
 alias del.clean="del.pyc && del.tilde"
+
+# Rouster
+alias r="/aver/rouster/rouster.py"
