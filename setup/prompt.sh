@@ -102,7 +102,7 @@ function set_git {
 function set_symbol () {
   # Set the prompt symbol, colorized on return value of previous command
   if test $? -eq 0 ; then
-      SYMBOL="\$"
+      SYMBOL="${WHITE}\$${COLOR_NONE}"
   else
       SYMBOL="${ERR_COLOR}\$${COLOR_NONE}"
   fi
@@ -118,7 +118,7 @@ function set_prompt () {
   set_dir
   set_git
 
-  PS1="${VENV}${RIND}${LOGIN} ${DIR} ${GIT}${SYMBOL} "
+  PS1="${VENV}${RIND}${LOGIN} ${DIR} ${GIT}\n  ${SYMBOL} "
 }
 
 # Function to execute immediately prior to displaying the prompt
