@@ -2,10 +2,19 @@
 [ -z "$PS1" ] && return
 
 export DOTBIN="${HOME}/.bin"
-
+source $DOTBIN/git/setup.sh
 source $DOTBIN/misc_functions/*.sh
-source $DOTBIN/misc_setup/*.sh
-source $DOTBIN/git/*.sh
+
+SETUP=$DOTBIN/misc_setup
+source $SETUP/aliases.sh
+source $SETUP/completion.sh
+source $SETUP/docker.sh
+source $SETUP/rouster.sh
+source $SETUP/history.sh
+source $SETUP/prompt.sh
+source $SETUP/virtualenv.sh
+
+
 
 SCRIPTS="${DOTBIN}/scripts"
 export PATH="${PATH}:$SCRIPTS"
@@ -22,5 +31,3 @@ date
 if [ -f ~/.localbin/local_profile ]; then
     source ~/.localbin/local_profile
 fi
-
-#test_network
