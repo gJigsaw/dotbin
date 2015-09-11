@@ -1,6 +1,8 @@
 # Setup rouster aliases
 alias rouster="/aver/rouster/rouster.py"
+alias rind="/aver/rouster/rind"
 alias r="rouster"
+alias r="rind"
 
 alias r.bash="rouster bash"
 alias r.build="rouster build"

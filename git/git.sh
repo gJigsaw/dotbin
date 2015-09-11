@@ -9,7 +9,7 @@ function git_find {
 alias g.find="clear;find . $@ | grep -v '.git' | grep -v '.pyc$' | grep -v '__pycache__' | grep -v '~$' | grep -v '/#' | grep -v '/.#' | less"
 
 alias g.add="git add"
-alias g.CherrPick="git cherry-pick"
+alias g.cherry-pick="git cherry-pick"
 alias g.reset_hard='git reset --hard'
 
 alias g.diff_='git diff'
