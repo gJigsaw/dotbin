@@ -21,6 +21,7 @@ alias d.used='docker_used'
 alias d.unuse='docker_unuse'
 alias d.version='docker --version && docker version'
 
+
 # Set machine against which this environemnt will execute docker commands.
 function docker_use () {
     eval "$(docker-machine env $*)"
