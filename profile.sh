@@ -1,13 +1,13 @@
 # Bail if not running interactively.
 [ -z "$PS1" ] && return
 
-export DOTBIN="${HOME}/.bin"
-source $DOTBIN/git/setup.sh
-source $DOTBIN/misc_functions/*.sh
-
 export AVER_SOURCE=~/naver
 
-SETUP=$DOTBIN/misc_setup
+export DOTBIN="${HOME}/.bin"
+source $DOTBIN/git/setup.sh
+
+SETUP=$DOTBIN/setup
+
 source $SETUP/aliases.sh
 source $SETUP/completion.sh
 source $SETUP/docker.sh
