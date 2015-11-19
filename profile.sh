@@ -1,7 +1,7 @@
 # Bail if not running interactively.
 [ -z "$PS1" ] && return
 
-export AVER_SOURCE=~/naver
+export AVER_SOURCE=~/aver
 
 export DOTBIN="${HOME}/.bin"
 source $DOTBIN/git/setup.sh

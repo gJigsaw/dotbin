@@ -3,7 +3,7 @@
 # http://pypi.python.org/pypi/virtualenvwrapper
 # https://bitbucket.org/dhellmann/virtualenvwrapper/
 
-export WORKON_HOME=$HOME_DIR/Coding/VirtualEnvironments
+export WORKON_HOME=$HOME/Coding/VirtualEnvironments
 VENV_SCRIPT="$WORKON_HOME/virtualenvwrapper.sh"
 
 if [ -e "$VENV_SCRIPT" ] && [ -e $WORKON_HOME ]

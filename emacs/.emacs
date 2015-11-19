@@ -15,6 +15,21 @@
 ;(require 'dockerfile-mode)
 ;(add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode.el))
 
+
+;; OSX Copy-Paste Functionality
+(defun copy-from-osx ()
+  (shell-command-to-string "pbpaste"))
+
+(defun paste-to-osx (text &optional push)
+  (let ((process-connection-type nil))
+    (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
+      (process-send-string proc text)
+      (process-send-eof proc))))
+
+(setq interprogram-cut-function 'paste-to-osx)
+(setq interprogram-paste-function 'copy-from-osx)
+
+
 ;(global-linum-mode t)
 (show-paren-mode t)
 (setq show-paren-style 'expression)
@@ -197,7 +212,6 @@
 ;(add-hook 'python-mode-hook 'jedi:setup)
 ;(setq jedi:complete-on-dot t)                 ; optional
 
-
 (autoload 'markdown-mode "markdown-mode"
   "Major mode for editing Markdown files" t)
 (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
@@ -248,3 +262,12 @@
 (global-set-key "\M-p"  'previous-buffer)
 (global-set-key "\C-x\C-n" 'next-buffer)
 (global-set-key "\C-x\C-p" 'previous-buffer)
+
+
+;; Enable Python Code Folding (Hide & Show)
+(add-hook 'python-mode-hook 'hs-minor-mode)
+(global-set-key (kbd "C-c -") 'hs-toggle-hiding)
+(global-set-key (kbd "C-c (") 'hs-show-all)
+(global-set-key (kbd "C-c )") 'hs-hide-all)
+(global-set-key (kbd "C-c [") 'hs-show-block)
+(global-set-key (kbd "C-c ]") 'hs-hide-block)
