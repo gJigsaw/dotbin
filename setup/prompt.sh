@@ -21,7 +21,6 @@ LIGHT_YELLOW="\[\033[1;33m\]"
 
 # Selected Colors (alter to taste)
 VENV_COLOR="${CYAN}"
-DOCKER_COLOR="${CYAN}"
 LOGIN_COLOR="${PURPLE}"
 DIR_COLOR="${BLUE}"
 GIT_CLEAN_COLOR="${CYAN}"
@@ -39,18 +38,6 @@ function set_venv () {
     fi
 }
 
-function set_rind () {
-  # Set the [R]ouster [IN] [D]ocker substring.
-    DockerTarget=`docker_used`
-    RousterEnvironment=`echo $ROUSTER_ENVIRONMENT`
-    RIND="${RousterEnvironment}@${DockerTarget}"
-    if [ "$RIND" = "@"  ]; then
-        RIND=""
-    else
-        RIND="${DOCKER_COLOR}[${RIND}]${COLOR_NONE} "
-    fi
-
-}
 
  function set_login () {
    # Set the username@hostname substring
@@ -113,12 +100,11 @@ function set_prompt () {
 
   set_symbol $? # run first to maintain return code of latest command
   set_venv
-  set_rind
   set_login
   set_dir
   set_git
 
-  PS1="${VENV}${RIND}${LOGIN} ${DIR} ${GIT}\n  ${SYMBOL} "
+  PS1="${VENV}${LOGIN} ${DIR} ${GIT}\n  ${SYMBOL} "
 }
 
 # Function to execute immediately prior to displaying the prompt
