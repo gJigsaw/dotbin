@@ -1,0 +1,5 @@
+# Browse
+
+function browse() {
+    gc "$@"
+}

@@ -1,3 +1,5 @@
+# Timestamp
+
 alias ts='timestamp'
 
 if [ ${TERM_PROGRAM} ] && [ ${TERM_PROGRAM} == Apple_Terminal ]; 
@@ -7,6 +9,11 @@ fi
 
 function timestamp () {
 $date_cmd '+%Y%m%d%H%M%S';
+}
+
+alias ts.dt='timestamp-datetime'
+function timestamp-datetime () {
+$date_cmd '+%Y%m%d-%H%M';
 }
 
 

@@ -6,11 +6,30 @@ export AVER_SOURCE=~/aver
 export DOTBIN="${HOME}/.bin"
 source $DOTBIN/git/setup.sh
 
+MISC_FUNCS=$DOTBIN/misc_functions
+
+source $MISC_FUNCS/backup
+source $MISC_FUNCS/browse
+source $MISC_FUNCS/chrome
+source $MISC_FUNCS/igrep
+source $MISC_FUNCS/lurk
+source $MISC_FUNCS/proxy
+source $MISC_FUNCS/test_network
+source $MISC_FUNCS/timestamp
+source $MISC_FUNCS/whack
+source $MISC_FUNCS/what
+
+
 SETUP=$DOTBIN/setup
 
 source $SETUP/aliases.sh
+
 source $SETUP/completion.sh
 source $SETUP/docker.sh
+source $SETUP/now.sh
+source $SETUP/packer.sh
+source $SETUP/terraform.sh
+source $SETUP/rise.sh
 source $SETUP/rouster.sh
 source $SETUP/history.sh
 source $SETUP/prompt.sh
@@ -24,11 +43,12 @@ export EDITOR="/usr/bin/emacs"
 export PAGER="less"
 
 # Show current dotbin git status
-cd $DOTBIN; git status -s; cd -
-
+cd $DOTBIN; git status -s; cd - > /dev/null
 
 if [ -f ~/.localbin/local_profile ]; then
     source ~/.localbin/local_profile
 fi
 
 date
+
+test_network

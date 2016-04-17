@@ -1,3 +1,5 @@
+# Backup w/ timestamp
+
 function backup {
     if [ -f $1 ]
         then
@@ -8,8 +10,10 @@ function backup {
                     echo Backup Failed!
                     exit 1
             fi
+            exit 0
         else
             echo File "($1)" not found!
+	    exit 1
     fi
-
+    exit 0
 }

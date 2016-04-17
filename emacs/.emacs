@@ -11,7 +11,7 @@
 (package-refresh-contents)
 (package-initialize)
 
-(add-to-list 'load-path "Users/jasongreen/.emacs.d/Modes/Dockerfile/")
+(add-to-list 'load-path "/Users/jigsaw/.emacs.d/Modes/Dockerfile/")
 ;(require 'dockerfile-mode)
 ;(add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode.el))
 
@@ -125,9 +125,9 @@
   (package-install 'helm-projectile))
 
 ;; magit
-(unless (package-installed-p 'magit)
-  (package-install 'magit))
-(global-set-key (kbd "C-x g") 'magit-status)
+;;(unless (package-installed-p 'magit)
+;;  (package-install 'magit))
+;;(global-set-key (kbd "C-x g") 'magit-status)
 
 ;;Wind move
 ;; (when (fboundp 'windmove-default-keybindings)

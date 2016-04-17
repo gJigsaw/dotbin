@@ -1,7 +1,11 @@
+# Test Network
+
 # Can you resolve and then ping www.google.com ?
+online="echo Network fine."
+offline="echo Network offline."
 function test_network () {
     if host google.com | grep -q timed
         then echo "DNS Failed";
-    else ping -c 1 -W 1 google.com | grep -q bytes && echo "Network Fine." || echo "Network Offline.";
+    else ping -c 1 -W 1 google.com | grep -q bytes && $online || $offline;
     fi
 }

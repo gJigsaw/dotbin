@@ -1,4 +1,7 @@
+# Ignoring Grep
+
 IGNORED_EXTENSIONS='.git|.pyc|~|/#|/.#|:0|__pycache__'
+
 function igrep () {
     fgrep -r $* . | grep -Ev $IGNORED_EXTENSIONS
 }

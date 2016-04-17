@@ -1,1 +1,1 @@
-/Users/jigsaw/.bin/emacs/.emacs.d
+/Users/jigsaw/.bin/emacs
