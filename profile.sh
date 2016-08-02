@@ -26,13 +26,13 @@ source $SETUP/aliases.sh
 
 source $SETUP/completion.sh
 source $SETUP/docker.sh
+source $SETUP/git.sh
+source $SETUP/history.sh
 source $SETUP/now.sh
 source $SETUP/packer.sh
 source $SETUP/terraform.sh
 source $SETUP/rise.sh
 source $SETUP/rouster.sh
-source $SETUP/history.sh
-source $SETUP/prompt.sh
 source $SETUP/virtualenv.sh
 
 SCRIPTS="${DOTBIN}/scripts"
@@ -44,10 +44,6 @@ export PAGER="less"
 
 # Show current dotbin git status
 cd $DOTBIN; git status -s; cd - > /dev/null
-
-if [ -f ~/.localbin/local_profile ]; then
-    source ~/.localbin/local_profile
-fi
 
 date
 
