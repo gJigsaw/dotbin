@@ -28,12 +28,11 @@ source $SETUP/completion.sh
 source $SETUP/docker.sh
 source $SETUP/git.sh
 source $SETUP/history.sh
-source $SETUP/now.sh
-source $SETUP/packer.sh
-source $SETUP/terraform.sh
 source $SETUP/rise.sh
 source $SETUP/rouster.sh
 source $SETUP/virtualenv.sh
+
+source ~/docker/now/now.sh
 
 SCRIPTS="${DOTBIN}/scripts"
 export PATH="${PATH}:$SCRIPTS"
