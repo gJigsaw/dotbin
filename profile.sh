@@ -24,6 +24,7 @@ SETUP=$DOTBIN/setup
 
 source $SETUP/aliases.sh
 
+source $SETUP/cas.sh
 source $SETUP/completion.sh
 source $SETUP/docker.sh
 source $SETUP/git.sh
@@ -40,6 +41,7 @@ export PATH="${PATH}:$SCRIPTS"
 export LESS="-iQFXKRM --shift=5"
 export EDITOR="/usr/bin/emacs"
 export PAGER="less"
+export CLICOLOR=1
 
 # Show current dotbin git status
 cd $DOTBIN; git status -s; cd - > /dev/null
