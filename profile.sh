@@ -27,7 +27,7 @@ source $SETUP/aliases.sh
 source $SETUP/cas.sh
 source $SETUP/completion.sh
 source $SETUP/docker.sh
-source $SETUP/git.sh
+source $SETUP/git.sh > /dev/null
 source $SETUP/history.sh
 source $SETUP/rise.sh
 source $SETUP/rouster.sh
