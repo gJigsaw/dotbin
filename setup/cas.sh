@@ -1,2 +1,5 @@
-CAS_DESKTOP=10.243.44.121
-alias cas.dt"=ssh -i ~/.ssh/opskey_rsa ubuntu@${CAS_DESKTOP}"
+CAS_USER=jpg29
+CAS_VM_IP=10.243.46.67
+CAS_OPSKEY_PATH="~/.ssh/opskey_rsa"
+alias vm"=ssh -i ${CAS_OPSKEY_PATH} ${CAS_USER}@${CAS_VM_IP}"
+alias uvm"=ssh -i ${CAS_OPSKEY_PATH} ubuntu@${CAS_VM_IP}"
