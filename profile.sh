@@ -12,6 +12,8 @@ MISC_FUNCS=$DOTBIN/misc_functions
 source $MISC_FUNCS/backup
 source $MISC_FUNCS/browse
 source $MISC_FUNCS/chrome
+source $MISC_FUNCS/columns
+source $MISC_FUNCS/drop
 source $MISC_FUNCS/igrep
 source $MISC_FUNCS/lurk
 source $MISC_FUNCS/proxy

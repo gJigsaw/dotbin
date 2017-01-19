@@ -13,3 +13,6 @@ function os() {
     export OS_PROJECT_NAME=$1
     export OS_TENANT_NAME=$1
 }
+
+alias nln='nova list --name'
+

@@ -1,0 +1,4 @@
+# Remove instances of argument
+function drop() {
+    sed -e "s/$1//g"
+}
