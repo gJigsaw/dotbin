@@ -1,0 +1,8 @@
+[user]
+	name = gJigsaw
+	email = GitHub@JasonGreen.Name
+[color]
+	ui = true
+[core]
+	editor = emacs
+	excludesfile = /home/gjigsaw/.gitignore_global
