@@ -1,11 +1,12 @@
 # Bail if not running interactively.
 [ -z "$PS1" ] && return
 
-export AVER_SOURCE=~/aver
-
 export DOTBIN="${HOME}/.bin"
 source $DOTBIN/git/setup.sh
+
 source $DOTBIN/tmux/setup.sh
+export DOCKER="${HOME}/docker"
+source $DOCKER/setup.sh
 
 MISC_FUNCS=$DOTBIN/misc_functions
 
@@ -27,10 +28,7 @@ SETUP=$DOTBIN/setup
 
 source $SETUP/aliases.sh
 
-source $SETUP/cas.sh
 source $SETUP/completion.sh
-source $SETUP/docker.sh
-source $SETUP/git.sh 2> /dev/null
 source $SETUP/history.sh
 source $SETUP/rise.sh
 source $SETUP/rouster.sh
@@ -47,7 +45,8 @@ export PAGER="less"
 export CLICOLOR=1
 
 # Show current dotbin git status
-cd $DOTBIN; git status -s; cd - > /dev/null
+cd $DOTBIN; git status -s; cd - > /dev/null && echo '--'
+cd $DOCKER; git status -s; cd - > /dev/null
 
 date
 
