@@ -1,19 +1,16 @@
 # Timestamp
 
-alias ts='timestamp'
-
 if [ ${TERM_PROGRAM} ] && [ ${TERM_PROGRAM} == Apple_Terminal ]; 
   then date_cmd='gdate';
   else date_cmd='date';
 fi
 
 function timestamp () {
-$date_cmd '+%Y%m%d%H%M%S';
+    $date_cmd '+%Y%m%d%H%M%S';
 }
+alias ts='timestamp'
 
-alias ts.dt='timestamp-datetime'
 function timestamp-datetime () {
-$date_cmd '+%Y%m%d-%H%M';
+    $date_cmd '+%Y%m%d-%H%M';
 }
-
-
+alias ts.dt='timestamp-datetime'
