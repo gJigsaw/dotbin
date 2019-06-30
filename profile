@@ -1,21 +1,16 @@
+#!/bin/bash
 [ -z "$PS1" ] && return # Bail if not running interactively.
 
 export DOTBIN="${HOME}/.bin"
-for f in $DOTBIN/misc_functions/*; do source $f; done
+export PATH="${PATH}:${DOTBIN}/scripts"
 source $DOTBIN/git/setup
 source $DOTBIN/tmux/setup
-
-export PATH="${PATH}:${DOTBIN}/scripts"
+for f in $DOTBIN/misc_functions/*; do source $f; done
+for f in $DOTBIN/setup/*; do source $f; done
 
 export DOCKER="${HOME}/docker"
 source $DOCKER/setup/docker
 source $DOCKER/python3/setup
-
-SETUP=$DOTBIN/setup
-source $SETUP/aliases
-source $SETUP/completion
-source $SETUP/history
-source $SETUP/python
 
 export LESS="-iQFXKRM --shift=5"
 export EDITOR="/usr/bin/emacs"
