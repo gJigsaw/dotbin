@@ -9,6 +9,7 @@ alias biggest="du -s ./* | sort -nr | awk '{print \$2}' | xargs du -sh"
 
 # Network
 alias ext_ip='curl http://ifconfig.me/ip && echo ""'
+alias int_ip='hostname -I'
 
 # Delete superfluous files recursively
 alias del.pyc='find . -type f -name "*.pyc" -delete'
