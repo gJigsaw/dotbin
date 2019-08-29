@@ -13,15 +13,19 @@ export DOCKER="${HOME}/docker"
 source $DOCKER/setup/docker
 source $DOCKER/python3/setup
 source $DOCKER/rise/setup
+source $DOCKER/firefox/setup
 
 export LESS="-iQFXKRM --shift=5"
 export EDITOR="/usr/bin/emacs"
 export PAGER="less"
 export CLICOLOR=1
+export TERM=screen-256color
 
 # Show current ~/.bin and ~/docker git statuses
 cd $DOTBIN; git status -s; cd - > /dev/null && echo '--'
 cd $DOCKER; git status -s; cd - > /dev/null
+
+xhost local: # To allow docker containers GUIs to percolate up to ChromeOS
 
 date
 
