@@ -11,6 +11,7 @@ for f in $DOTBIN/setup/*; do source $f; done
 
 export DOCKER="${HOME}/docker"
 source $DOCKER/setup/docker
+source $DOCKER/python2/setup
 source $DOCKER/python3/setup
 source $DOCKER/rise/setup
 source $DOCKER/firefox/setup
