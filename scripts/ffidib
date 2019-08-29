@@ -1,8 +1,15 @@
 # FireFox in Docker in Browser
 
-docker run --rm --shm-size 2g -ti --device /dev/snd -p 5800:5800 -e XHOST=100.115.92.200 -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix jlesage/firefox
+docker run
+       --rm \
+       -ti \
+       --shm-size 2g \
+       --device /dev/snd \
+       -p 5800:5800 \
+       -e XHOST=100.115.92.200 \
+       -e DISPLAY=$DISPLAY \
+       -v /tmp/.X11-unix:/tmp/.X11-unix \
+       jlesage/firefox
 
-echo "Your Host IP(s):"
-int_ip
 echo "Please browse to <host_ip>:<ffid_port>"
 echo "i.e.: http://100.115.92.200:5800/"
