@@ -26,7 +26,8 @@ export TERM=screen-256color
 cd $DOTBIN; git status -s; cd - > /dev/null && echo '--'
 cd $DOCKER; git status -s; cd - > /dev/null
 
-xhost local: # To allow docker containers GUIs to percolate up to ChromeOS
+# Allow docker containers GUIs to percolate up to ChromeOS
+xhost local: > /dev/null
 
 date
 
