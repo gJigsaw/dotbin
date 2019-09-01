@@ -8,7 +8,9 @@
 (menu-bar-mode -1)
 
 ; Address Pixelbook's alt-backspace to delete binding
-(global-set-key (kbd "<deletechar>") 'backward-kill-word)
+;    Dsabled once I found crosh preferences under Ctrl-Shitf-p 
+;    and then checked the "Alt-Backspace is Meta-Backspace" checkbox
+;(global-set-key (kbd "<deletechar>") 'backward-kill-word)
 
 ; Docker
 ;(add-to-list 'load-path "~/.emacs.d/Modes/Dockerfile")
