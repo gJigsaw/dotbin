@@ -93,3 +93,8 @@ celerybeat-schedule
 terraform.tfvars
 terraform.tfstate
 terraform.tfstate.backup
+
+# Godot
+.import/
+export.cfg
+export_presets.cfg
