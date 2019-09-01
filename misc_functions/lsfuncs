@@ -1,0 +1,4 @@
+# Find and display details on a function
+function lsfuncs() {
+    declare -f $@
+}

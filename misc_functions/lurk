@@ -1,8 +1,9 @@
 # Define Lurking functions
 
 alias lurk='lurks' # Default to ssh
-alias slurk='lurks'
-alias tlurk='lurkt'
+function lurk () {
+	 lurks $@
+}
 
 # Loop until it pings, then telnet into it
 function lurkt () {
@@ -12,6 +13,7 @@ function lurkt () {
     done
     ( telnet $* )
 }
+export -f lurkt
 
 # Loop until it pings, then ssh into it
 function lurks () {
@@ -21,3 +23,4 @@ function lurks () {
     done
     ( ssh $* )
 }
+export -f lurks

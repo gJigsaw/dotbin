@@ -1,0 +1,3 @@
+function ext_ip() {
+	 curl http://ifconfig.me/ip && echo ""
+}

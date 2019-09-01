@@ -1,0 +1,12 @@
+# Directory inspection
+function pretty_find() {
+	 clear;find . \
+	 | grep -v '.git' \
+	 | grep -v '.pyc$' \
+	 | grep -v '__pycache__' \
+	 | grep -v '~$'  \
+	 | grep -v '/#' \
+	 | grep -v '/.#' \
+	 | less
+}
+alias pf="pretty_find"

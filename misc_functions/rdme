@@ -1,0 +1,4 @@
+# Display any README file(s)
+function rdme() {
+	 less *[Rr][Ee][Aa][Dd]*[Mm][Ee]*
+}

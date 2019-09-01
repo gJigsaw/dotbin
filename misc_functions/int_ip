@@ -1,0 +1,3 @@
+function int_ip() {
+	 hostname -I
+}
