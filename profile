@@ -5,16 +5,13 @@ export DOTBIN="${HOME}/.bin"
 export PATH="${PATH}:${DOTBIN}/scripts"
 source $DOTBIN/git/setup
 source $DOTBIN/tmux/setup
-export INPUTRC=.inputrc # to address pixelbook's alt-backspace to delete mapping
 for f in $DOTBIN/misc_functions/*; do source $f; done
+for f in $(find $DOTBIN/misc_functions/* -type f -printf "%f\n"); do export -f $f; done
 for f in $DOTBIN/setup/*; do source $f; done
 
 export DOCKER="${HOME}/docker"
 source $DOCKER/setup/docker
-source $DOCKER/python2/setup
-source $DOCKER/python3/setup
-source $DOCKER/rise/setup
-source $DOCKER/firefox/setup
+for p in $DOCKER/*/setup; do source $p; done
 
 export LESS="-iQFXKRM --shift=5"
 export EDITOR="/usr/bin/emacs"
@@ -26,6 +23,7 @@ export TERM=screen-256color
 cd $DOTBIN; git status -s; cd - > /dev/null && echo '--'
 cd $DOCKER; git status -s; cd - > /dev/null
 
+export XHOST=100.115.92.200
 # Allow docker containers GUIs to percolate up to ChromeOS
 xhost local: > /dev/null
 
