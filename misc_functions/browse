@@ -1,5 +1,0 @@
-# Browse
-
-function browse() {
-    gc "$@"
-}
