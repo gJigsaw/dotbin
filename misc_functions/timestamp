@@ -1,9 +1,6 @@
 # Timestamp
 
-if [ ${TERM_PROGRAM} ] && [ ${TERM_PROGRAM} == Apple_Terminal ]; 
-  then date_cmd='gdate';
-  else date_cmd='date';
-fi
+date_cmd='gdate'
 
 function timestamp () {
     $date_cmd '+%Y%m%d%H%M%S';

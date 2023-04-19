@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source $DOTBIN/git/git-completion.bash.sh
+#source $DOTBIN/git/git-completion.zsh
 
 if [ -f "${git_prompt}" ]; then
     export GIT_PROMPT_THEME=Solarized_UserHost

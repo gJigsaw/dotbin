@@ -1,4 +1,4 @@
 # Show biggest files
 function biggest() {
-	 du -s ./* | sort -nr | awk '{print \$2}' | xargs du -sh
+         du -sh ./* 2>/dev/null | sort -hr | head -n 20
 }
