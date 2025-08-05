@@ -1,8 +1,13 @@
 [user]
 	name = gJigsaw
 	email = GitHub@JasonGreen.Name
+	signingkey = E3C888A7BA3957F7
 [color]
 	ui = true
 [core]
 	editor = emacs
 	excludesfile = /home/gjigsaw/.gitignore_global
+[commit]
+	gpgsign = true
+[tag]
+	gpgSign = true
