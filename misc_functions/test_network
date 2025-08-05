@@ -6,6 +6,6 @@ offline="echo Network offline."
 function test_network () {
     if host google.com | grep -q timed
         then echo "DNS Failed";
-    else ping -c 1 -W 1 google.com | grep -q bytes && $online || $offline;
+    else ping -c 1 -W 1 google.com | grep -q bytes && eval $online || eval $offline;
     fi
 }
