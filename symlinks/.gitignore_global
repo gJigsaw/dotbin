@@ -1,10 +1,13 @@
 # OSX
 .DS_Store
 
-#Emacs
+# Emacs
 *~
 \#*\#
 .\#*
+
+# Mise
+*.local.*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
